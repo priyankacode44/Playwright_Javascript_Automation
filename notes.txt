@@ -1,0 +1,153 @@
+// Plain-language glossary for the test files
+// Each short line explains a word used in your tests: what it means, why we use it, and a tiny example.
+
+// file / folder
+// - meaning: the files in the project where tests live (example: tests/example.spec.js).
+// - why: we organize tests into files so the runner can find and run them.
+
+// Playwright
+// - meaning: the testing tool that controls browsers (Chrome/Firefox/WebKit).
+// - why: to open pages, click, type, and check web pages automatically.
+
+// test
+// - meaning: a single check or scenario. Written with `test('name', async ({ page }) => { ... })`.
+// - why: groups steps that validate one behavior of the site.
+// - example: test('has title', async ({ page }) => { ... })
+
+// expect
+// - meaning: a function we use to check something is true (an assertion).
+// - why: it fails the test when the result is not what we expect.
+// - example: await expect(page).toHaveTitle(/Playwright/)
+
+// page
+// - meaning: the browser tab used by the test to open and interact with web pages.
+// - why: we use it to visit URLs, click links, and read content.
+// - example: await page.goto('https://playwright.dev/')
+
+// import / require
+// - meaning: two ways to get Playwright's test tools into the file.
+//   - `import { test, expect } from '@playwright/test'` (modern ES modules)
+//   - `const { test } = require('@playwright/test')` (older CommonJS)
+// - why: you must include the library to use `test`, `expect`, and `page`.
+
+// async / await
+// - meaning: `async` marks a function that does asynchronous work; `await` pauses until the action finishes.
+// - why: browser actions take time (loading pages), so we `await` them so steps run in order.
+// - example: await page.goto(url)
+
+// goto
+// - meaning: a command to open a URL in the `page` (browser tab).
+// - why: to navigate to the page we want to test.
+// - example: await page.goto('https://playwright.dev/')
+
+// click
+// - meaning: a command to click an element on the page.
+// - why: to simulate a user clicking a link or button.
+// - example: await page.getByRole('link', { name: 'Get started' }).click()
+
+// getByRole
+// - meaning: a way to find elements by their accessibility role and visible name.
+// - why: it is stable and based on how users and assistive tools see the page.
+// - example: page.getByRole('heading', { name: 'Installation' })
+
+// locator
+// - meaning: a reference to an element on the page you can act on or check.
+// - why: you can reuse it to click, type, or assert visibility.
+// - example: const btn = page.getByRole('link', { name: 'Get started' })
+
+// toHaveTitle
+// - meaning: an assertion that checks the page's title text.
+// - why: verify you are on the right page.
+// - example: await expect(page).toHaveTitle(/Playwright/)
+
+// toBeVisible
+// - meaning: an assertion that checks an element is visible on the page.
+// - why: confirm content is shown to users.
+// - example: await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible()
+
+// fixture
+// - meaning: values Playwright gives to tests automatically (like `page`).
+// - why: they simplify setup so each test gets a fresh browser page.
+// - example: async ({ page }) => { ... }
+
+// npx
+// - meaning: a tool that runs package binaries from node_modules without installing them globally.
+// - why: lets you run Playwright's test runner with `npx playwright test`.
+
+// playwright test
+// - meaning: the command that finds and runs tests in the `tests/` folder.
+// - why: it starts the test runner and reports results.
+
+// --headed
+// - meaning: an option to run tests with a visible browser window (not headless).
+// - why: helps you watch what happens while a test runs (useful for debugging).
+// - example: npx playwright test --headed
+
+// page.pause()
+// - meaning: a command you can add in a test to pause execution and open the Playwright inspector.
+// - why: lets you step through the page and try selectors interactively.
+
+// traces / screenshots / video
+// - meaning: debug artifacts Playwright can record during tests.
+// - why: when a test fails, these show what happened so you can debug.
+
+// assertion / matcher
+// - meaning: the check you make with `expect`. A matcher is the specific check (toHaveTitle, toBeVisible).
+// - why: to declare the expected result and let the test fail when it's not met.
+
+// simple example (full test):
+// test('example', async ({ page }) => {
+//   await page.goto('https://playwright.dev/');            // open site
+//   await page.getByRole('link', { name: 'Get started' }).click(); // click link
+//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible(); // check heading
+// });
+
+// Want it even shorter? I can convert each of the above into 1-line dictionary entries
+// or replace `tests/UIBasicstest.spec.js` with a runnable example test. Tell me which.
+
+// 4) Import vs require
+// - `import { test, expect } from '@playwright/test'` : modern ES module style (used in `example.spec.js`).
+// - `const { test } = require('@playwright/test')` : CommonJS style (used in `UIBasicstest.spec.js`).
+// Use one style consistent with your project setup.
+
+// 5) Async / await — why they matter
+// - Many Playwright actions are asynchronous (they take time). Mark the test function `async` and use `await`.
+// - Example: `await page.goto(url)` waits for navigation to finish before the next line runs.
+
+// 6) Selectors and queries
+// - `page.getByRole('link', { name: 'Get started' })` : finds a link by its accessibility role and visible name.
+// - Accessibility-based selectors (getByRole) are more reliable than fragile text/CSS selectors.
+
+// 7) Common Playwright matchers
+// - `toHaveTitle(/Playwright/)` : checks the page title matches a pattern.
+// - `toBeVisible()` : checks an element is visible on the page.
+
+// 8) Running tests (PowerShell)
+// - Run all tests:  npx playwright test
+// - Run a specific file: npx playwright test tests\example.spec.js
+// - Run a test in headed mode (see the browser): npx playwright test --headed
+
+// 9) Debugging tips
+// - Use `--headed` to see what happens in a browser window.
+// - Add `page.pause()` in a test to open a Playwright inspector while the test runs.
+// - Enable traces/screenshots/videos in `playwright.config.js` to collect failure evidence.
+
+// 10) Make tests meaningful
+// - Always include assertions with `expect` so tests actually check behavior.
+// - Use the `page` fixture: `test('name', async ({ page }) => { ... })` to get a fresh page per test.
+
+// 11) Short examples
+// - Navigate and check title:
+//   test('title example', async ({ page }) => {
+//     await page.goto('https://playwright.dev/');
+//     await expect(page).toHaveTitle(/Playwright/);
+//   });
+// - Click link and check heading:
+//   test('link example', async ({ page }) => {
+//     await page.goto('https://playwright.dev/');
+//     await page.getByRole('link', { name: 'Get started' }).click();
+//     await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+//   });
+
+// If you want, I can replace the `tests/UIBasicstest.spec.js` file with a small runnable example
+// (navigation + an `expect`) to show how it works in practice. Tell me if you want that.
